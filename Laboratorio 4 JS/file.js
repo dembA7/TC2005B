@@ -17,3 +17,28 @@ console.assert(1 === "1");
 console.assert(1 == "1");
 console.assert(1 == true);
 console.assert(1 === true);
+
+// Alcance de las variables
+
+for (let i = 1; i <= 10; i++){
+    console.log(i);
+}
+// Aquí ocurre un error porque la variable i murió al terminar el ciclo
+console.log(i);
+
+for (var i = 1; i <= 10; i++){
+    console.log(i);
+}
+// Aquí no hay error, la variable i sigue existiendo
+console.log(i);
+
+// alert, prompt, confirm (diseño interactivo)
+
+alert("hola!");
+
+let nombre = prompt("Cómo te llamas?");
+
+console.log("Hola " + nombre);
+
+let is_hungry = confirm("Tienes hambre?");
+console.log(is_hungry);
