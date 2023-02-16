@@ -56,3 +56,9 @@ console.log(numero_tacos());
 let cantidad_tacos = () => {
     return 10};
 console.log(cantidad_tacos());
+
+// html dinámico con eventos
+
+let  button = document.getElementById("buenosdias");
+button.innerHTML = "Buenos días!";
+button.onclick = () => alert("Bueeeeeenos días!")
