@@ -42,3 +42,17 @@ console.log("Hola " + nombre);
 
 let is_hungry = confirm("Tienes hambre?");
 console.log(is_hungry);
+
+// funciones tradicionales
+function numero_tacos(){
+    return 5;
+}
+
+console.log(numero_tacos());
+
+// funciones modernas
+() => {} // funcion anónima o arrow functions
+
+let cantidad_tacos = () => {
+    return 10};
+console.log(cantidad_tacos());
