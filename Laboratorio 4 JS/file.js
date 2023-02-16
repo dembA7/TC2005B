@@ -62,3 +62,22 @@ console.log(cantidad_tacos());
 let  button = document.getElementById("buenosdias");
 button.innerHTML = "Buenos días!";
 button.onclick = () => alert("Bueeeeeenos días!")
+
+// arreglos
+const arreglo = ["Elemento"];
+console.log(arreglo);
+
+arreglo["dos"] = 2;
+arreglo.push("Otro elemento");
+arreglo.length = 10;
+arreglo[20] = "Fin del arreglo";
+
+// recorrer un arreglo
+
+for(let elemento in arreglo){
+    console.log(elemento);
+}
+
+for(let valor of arreglo){
+    console.log(valor);
+}
