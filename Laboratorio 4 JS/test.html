@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>Laboratorio 4 JS</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Test 1</h1>
-        <button onclick="script1()">Ejecutar prueba 1</button>
-        <script src="scripts.js"></script>
+        <script src="script.js"></script>
+
+        <h2>Preguntas</h2>
+
+        <strong>¿Qué diferencias y semejanzas hay entre Java y JavaScript?</strong>
+        <p>Java es un lenguaje de programación de propósito general que se utiliza principalmente para desarrollar aplicaciones 
+        empresariales de alta escala, mientras que JavaScript es un lenguaje de programación interpretado que se utiliza principalmente 
+        para desarrollar aplicaciones web interactivas.</p>
+
+        <strong>¿Qué métodos tiene el objeto Date?</strong>
+        <p>
+            <ul>
+                <li>getDate(): devuelve el día del mes (entre 1 y 31) de la fecha especificada.</li>
+                <li>getDay(): devuelve el día de la semana (entre 0 y 6, donde 0 es domingo)</li>
+                <li>getFullYear(): devuelve el año (con cuatro dígitos) de la fecha especificada.</li>
+                <li>getHours(): devuelve la hora (entre 0 y 23) de la fecha especificada.</li>
+                <li>getMinutes(): devuelve los minutos (entre 0 y 59) de la fecha especificada.</li>
+            </ul>
+        </p>
+
+        <strong>¿Qué métodos tienen los arreglos?</strong>
+        <p>
+            <ul>
+                <li>concat(): fusiona dos o más arreglos en uno nuevo.</li>
+                <li>every(): comprueba si todos los elementos de un arreglo cumplen una condición.</li>
+                <li>filter(): crea un nuevo arreglo con todos los elementos que cumplan una condición determinada.</li>
+                <li>find(): devuelve el primer elemento que cumpla una condición determinada.</li>
+                <li>forEach(): ejecuta una función para cada elemento del arreglo.</li>
+            </ul>
+        </p>
+
+        <strong>¿Cómo se declara una variable con alcance local dentro de una función?</strong>
+        <p>En JavaScript, una variable con alcance local dentro de una función se declara usando la palabra clave "let" o "const" dentro del cuerpo de la función.</p>
+
+        <strong>¿Qué implicaciones tiene utilizar variables globales dentro de funciones?</strong>
+        <p>
+            <ul>
+                <li>Accesibilidad y modificabilidad: Las variables globales pueden ser accedidas y modificadas desde cualquier parte del código, lo que puede llevar a comportamientos inesperados y errores difíciles de depurar.</li>
+                <li>Colisiones de nombres: Las variables globales pueden tener nombres comunes que colisionen con nombres de variables locales o de otras funciones, lo que puede llevar a errores de lógica o a la sobreescritura accidental de valores.</li>
+                <li>Memoria y rendimiento: El uso excesivo de variables globales puede aumentar el consumo de memoria y afectar el rendimiento del código, especialmente en programas grandes y complejos.</li>
+                <li>Reusabilidad y encapsulamiento: El uso de variables globales puede dificultar la reutilización y el encapsulamiento de las funciones, ya que éstas dependerán de variables externas y no podrán ser usadas de manera autónoma.</li>
+            </ul>
+        </p>
+
     </body>
 </html>
