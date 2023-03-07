@@ -1,34 +1,38 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
+const router = express.Router();
+
+const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-//Middleware
-app.use((request, response, next) => {
-    console.log('Middleware!');
-    next(); //Le permite a la petición avanzar hacia el siguiente middleware
+app.use('/',(request, response, next) => {
+    let html = `
+        <!DOCTYPE html>
+        <html>
+        <head><meta charset="utf-8"></head><body>
+        <title>Laboratorio 11 Express</title>
+        <h2>Colores</h2>
+        <p style="color: blue;">Azul<p>
+        <p style="color: green;">Verde<p>
+        <p style="color: #F4D03F;">Amarillo<p>
+    `;
+    response.send(html);
 });
 
-app.use((request, response, next) => {
-    console.log('Otro middleware!');
-    response.send('¡Hola mundo!'); //Manda la respuesta
-});
+const azulRuta = require('./routes/blue.routes');
+app.use('/azul', azulRuta);
 
-app.use("/ruta", (request, response, next => {
-    response.send("Hola desde la ruta /ruta");
-}));
+const verdeRuta = require('./routes/green.routes');
+app.use('/verde', verdeRuta);
 
-const hockeyRutas = require('./routes/hockey.routes');
-
-app.use('/hockey', hockeyRutas);
+const amarilloRuta = require('./routes/yellow.routes');
+app.use('/verde', amarilloRuta);
 
 app.use((request, response, next) => {
-    console.log("Tercer middleware");
-    response.status(404);
-    
-    //Envía la respuesta al cliente
-    response.send('Lo sentimos, esta ruta no existe');
+    response.statusCode = 404;
+    response.write("Lo sentimos, no conocemos ese color.");
+    response.end();
 });
-     
+
 app.listen(3000);
