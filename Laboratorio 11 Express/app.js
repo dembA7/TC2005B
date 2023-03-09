@@ -6,6 +6,16 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 
+const azulRuta = require('./routes/blue.routes');
+app.use(azulRuta);
+
+const verdeRuta = require('./routes/green.routes');
+app.use(verdeRuta);
+
+const amarilloRuta = require('./routes/yellow.routes');
+app.use(amarilloRuta);
+
+
 app.use('/',(request, response, next) => {
     let html = `
         <!DOCTYPE html>
@@ -19,15 +29,6 @@ app.use('/',(request, response, next) => {
     `;
     response.send(html);
 });
-
-const azulRuta = require('./routes/blue.routes');
-app.use('/azul', azulRuta);
-
-const verdeRuta = require('./routes/green.routes');
-app.use('/verde', verdeRuta);
-
-const amarilloRuta = require('./routes/yellow.routes');
-app.use('/verde', amarilloRuta);
 
 app.use((request, response, next) => {
     response.statusCode = 404;
