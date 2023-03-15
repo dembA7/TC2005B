@@ -2,7 +2,7 @@ const express = require('express');
 const file = require('fs');
 const router = express.Router();
 
-router.get('/azul', (request, response, next) => {
+router.get('/azul', (request, response) => {
 
     let html = `
         <!DOCTYPE html>
@@ -14,10 +14,5 @@ router.get('/azul', (request, response, next) => {
     `;
     response.send(html);
 });
-
-// router.post('/azul', (request, response, next) => {
-//     file.writeFileSync('file.txt', request.body.tu_auto);
-//     response.send("Obtuviste un: " + request.body.tu_auto);
-// });
 
 module.exports = router;

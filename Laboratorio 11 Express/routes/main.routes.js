@@ -2,7 +2,7 @@ const express = require('express');
 const file = require('fs');
 const router = express.Router();
 
-router.get('/', (request, response, next) => {
+router.get('/', (request, response) => {
     
     let html = `
         <!DOCTYPE html>
