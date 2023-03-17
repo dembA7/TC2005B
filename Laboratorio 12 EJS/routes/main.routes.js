@@ -9,10 +9,10 @@ router.get('/', (request, response) => {
         <head><meta charset="utf-8"></head><body>
         <title>Laboratorio 11 Express</title>
         <h2>Colores</h2>
-        <p><strong>Las rutas a visitar son:</strong><br><br>
-        <a href ="/azul">Azul</a><br><br>
-        <a href ="/verde">Verde</a><br><br>
-        <a href ="/amarillo">Amarillo</a><br><br>
+        <p><strong>Las rutas a visitar son:</strong>
+        <p style="color: blue;">Azul<p>
+        <p style="color: green;">Verde<p>
+        <p style="color: #F4D03F;">Amarillo<p>
     `;
     response.send(html);
 });
