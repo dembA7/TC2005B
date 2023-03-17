@@ -3,7 +3,6 @@ const file = require('fs');
 const router = express.Router();
 
 router.get('/azul', (request, response) => {
-
     let html = `
         <!DOCTYPE html>
         <html>

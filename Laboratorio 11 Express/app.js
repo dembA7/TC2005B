@@ -12,10 +12,10 @@ const verdeRuta = require('./routes/green.routes');
 const amarilloRuta = require('./routes/yellow.routes');
 
 // Middlewares
-app.use('/', mainRuta);
-app.use('/azul', azulRuta);
-app.use('/verde', verdeRuta);
-app.use('/amarillo', amarilloRuta);
+app.use(mainRuta);
+app.use(azulRuta);
+app.use(verdeRuta);
+app.use(amarilloRuta);
 
 // 404
 app.use((request, response) => {
