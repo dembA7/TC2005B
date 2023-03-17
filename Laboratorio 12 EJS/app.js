@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json());
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+// app.use(express.static(path.join(__dirname, 'public')));
+
 // Rutas
 const mainRuta = require('./routes/main.routes');
 const azulRuta = require('./routes/blue.routes');
@@ -12,7 +16,7 @@ const verdeRuta = require('./routes/green.routes');
 const amarilloRuta = require('./routes/yellow.routes');
 
 // Middlewares
-app.use(mainRuta);
+app.use('/', mainRuta);
 app.use(azulRuta);
 app.use(verdeRuta);
 app.use(amarilloRuta);
