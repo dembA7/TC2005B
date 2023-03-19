@@ -1,0 +1,7 @@
+dependencies
+npm install express
+npm install nodemon
+npm install ejs
+npm install body-parser
+npm install cookie-parser
+npm install express-session
