@@ -12,7 +12,7 @@ exports.action = (request, response, next) => {
     });
 };
 
-exports.post_color = (request, response, next) => {
+exports.postColor = (request, response, next) => {
 
     const color = new Color({
         color: request.body.color,
