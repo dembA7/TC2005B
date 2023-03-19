@@ -1,0 +1,26 @@
+<%- include('includes/head.ejs') %>
+
+<% if (colores.length > 0) { %>
+    <div class="columns">
+        <% let columns = 0; %>
+        <% for (let color of colores) { %>
+            <% if (columns % 4 == 0) { %>
+    </div>
+    <div class="columns">
+            <% } %>
+            <% columns++; %>
+            <div class="column">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Color</h5>
+                      <p class="card-text">Descripción del color.</p>
+                      <a href="#" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            <% } %>
+            </div>
+    </div>
+<% } else { %>
+    <h1>No hay más colores registrados</h1>
+<% } %>   
