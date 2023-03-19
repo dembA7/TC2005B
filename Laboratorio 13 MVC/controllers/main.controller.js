@@ -1,14 +1,32 @@
 const Color = require('../models/colors.model');
 
-exports.action = (request, response, next) => {
+exports.getMain = (request, response, next) => {
     response.render('main', {
         titulo: 'Colores',
     });
 };
 
-exports.action = (request, response, next) => {
+exports.getRegister = (request, response, next) => {
     response.render('register', {
         titulo: 'Registrar',
+    });
+};
+
+exports.getBlue = (request, response, next) => {
+    response.render('blue', {
+        titulo: 'Azul',
+    });
+};
+
+exports.getYellow = (request, response, next) => {
+    response.render('yellow', {
+        titulo: 'Amarillo',
+    });
+};
+
+exports.getGreen = (request, response, next) => {
+    response.render('green', {
+        titulo: 'Verde',
     });
 };
 
