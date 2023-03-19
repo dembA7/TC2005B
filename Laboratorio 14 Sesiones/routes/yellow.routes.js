@@ -1,11 +1,8 @@
 const express = require('express');
-const file = require('fs');
 const router = express.Router();
 
-router.get('/amarillo', (request, response, next) => {
-    response.render('yellow', {
-        titulo: 'Amarillo',
-    });
-});
+const mainController = require('../controllers/main.controller')
+
+router.get('/amarillo', mainController.getYellow);
 
 module.exports = router;
