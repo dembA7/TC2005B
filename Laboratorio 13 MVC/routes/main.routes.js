@@ -1,18 +1,10 @@
 const express = require('express');
-const file = require('fs');
 const router = express.Router();
-const path = require('path');
 
-router.get('/', (request, response, next) => {
-    response.render('main', {
-        titulo: 'Colores',
-    });
-});
+const mainController = require('../controllers/main.controller')
 
-router.get('/register', (request, response, next) => {
-    response.render('register', {
-        titulo: 'Registrar',
-    });
-});
+router.get('/', mainController.getMain);
+router.get('/register', mainController.getRegister);
+
 
 module.exports = router;
