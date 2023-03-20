@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
@@ -8,6 +9,12 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 // app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    secret: 'xKrsDBW3!!L5tb5w5E$2gANH5W@0d6fV*MQR@e2l47%ADrB@Vd', 
+    resave: false,
+    saveUninitialized: false
+}));
 
 // Rutas
 const mainRuta = require('./routes/main.routes');
