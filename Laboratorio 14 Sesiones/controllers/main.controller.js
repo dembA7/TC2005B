@@ -44,3 +44,13 @@ exports.postColor = (request, response, next) => {
 exports.listar = (request, response, next) => {
     response.render('list', { colors: Color.fetchAll() });
 };
+
+function contador(req, res) {
+    var contador = parseInt(req.cookies.contador || 0);
+    contador++;
+    res.cookie('contador', contador);
+    res.send('Número de consultas: ' + contador);
+    console.log('Número de consultas: ' + contador);
+}  
+
+exports.contador = contador;
