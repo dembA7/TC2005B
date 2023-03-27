@@ -5,5 +5,6 @@ const mainController = require('../controllers/main.controller')
 
 router.get('/', mainController.getMain);
 router.get('/register', mainController.getRegister);
+router.post('/register', mainController.postColor);
 
 module.exports = router;

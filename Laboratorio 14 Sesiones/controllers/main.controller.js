@@ -69,6 +69,7 @@ exports.postColor = (request, response, next) => {
 
     color.save();
     response.redirect('/');
+    console.log("El color se ha guardado con éxito.")
 };
 
 exports.listar = (request, response, next) => {
