@@ -77,8 +77,53 @@ WHERE Entregan.Clave IS NULL
 
 -- Razón social de los proveedores que han realizado entregas tanto al proyecto 'Vamos México' como al proyecto 'Querétaro Limpio'.
 
-
+SELECT DISTINCT p.RazonSocial AS 'Proveedores'
+FROM Proveedores p
+JOIN Entregan e ON p.RFC = e.RFC
+JOIN Proyectos pr ON e.Numero = pr.Numero
+WHERE pr.Denominacion 
+IN ('Vamos México', 'Querétaro Limpio')
+GROUP BY p.RFC
+HAVING COUNT(DISTINCT pr.Numero) = 2;
 
 -- Descripción de los materiales que nunca han sido entregados al proyecto 'CIT Yucatán'.
+
+SELECT Descripcion AS 'Materiales' 
+FROM Materiales
+WHERE Clave NOT IN (
+  SELECT Clave FROM Entregan
+  WHERE Numero = 'CIT Yucatán'
+);
+
 -- Razón social y promedio de cantidad entregada de los proveedores cuyo promedio de cantidad entregada es mayor al promedio de la cantidad entregada por el proveedor con el RFC 'VAGO780901'.
+
+SELECT p.RazonSocial, AVG(e.Cantidad) AS PromedioCantidadEntregada
+FROM Entregan e
+JOIN Proveedores p ON e.RFC = p.RFC
+WHERE p.RFC <> 'VAGO780901'
+GROUP BY p.RazonSocial
+HAVING AVG(e.Cantidad) > (
+  SELECT AVG(Cantidad)
+  FROM Entregan
+  WHERE RFC = 'VAGO780901'
+)
+
 -- RFC, razón social de los proveedores que participaron en el proyecto 'Infonavit Durango' y cuyas cantidades totales entregadas en el 2000 fueron mayores a las cantidades totales entregadas en el 2001.
+
+SELECT RFC, RazonSocial
+FROM Proveedores
+WHERE RFC IN (
+    SELECT RFC
+    FROM Entregan
+    WHERE Numero = 5005
+        AND YEAR(Fecha) = 2000
+    GROUP BY RFC
+    HAVING SUM(Cantidad) > (
+        SELECT SUM(Cantidad)
+        FROM Entregan
+        WHERE Numero = 5005
+            AND YEAR(Fecha) = 2001
+            AND RFC = Entregan.RFC
+        GROUP BY RFC
+    )
+);
