@@ -73,6 +73,5 @@ exports.postColor = (request, response, next) => {
 };
 
 exports.listar = (request, response, next) => {
-    console.log(Color.fetchAll())
     response.render('list', { colores: Color.fetchAll() });
 };
