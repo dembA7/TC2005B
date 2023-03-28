@@ -62,16 +62,19 @@ exports.getGreen = (request, response, next) => {
 
 exports.postColor = (request, response, next) => {
 
+    console.log(request.body);
+
     const color = new Color({
         color: request.body.color,
         descripcion: request.body.descripcion,
     });
 
     color.save();
-    response.redirect('/');
     console.log("El color se ha guardado con éxito.")
+    response.redirect('/list');
 };
 
 exports.listar = (request, response, next) => {
-    response.render('list', { colors: Color.fetchAll() });
+    console.log(Color.fetchAll())
+    response.render('list', { colores: Color.fetchAll() });
 };
