@@ -1,26 +1,45 @@
 <%- include('includes/head.ejs') %>
 
-<% if (colores.length > 0) { %>
-    <div class="columns">
-        <% let columns = 0; %>
-        <% for (let color of colores) { %>
-            <% if (columns % 4 == 0) { %>
-    </div>
-    <div class="columns">
-            <% } %>
-            <% columns++; %>
-            <div class="column">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"><%=Color.color%>=</h5>
-                      <p class="card-text"><%=Color.descripcion%>=</p>
-                      <a href="#" class="btn btn-primary">Go</a>
+<!DOCTYPE html>
+<html>
+    <head><meta charset="utf-8"></head>
+    <style>
+        .card {
+            margin-top: 40px;
+            margin-right: 10px;
+            margin-left: 20px;
+        }
+        h3{
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+    </style>
+<body>
+    <h3>Estos son todos los colores registrados</h3>
+    <% if (colores.length > 0) { %>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% let columns = 0; %>
+            <% for (let color of colores) { %>
+                <% if (columns % 20 == 0) { %>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+                <% } %>
+                <% columns++; %>
+                <div class="col">
+                    <div class="card">
+                        <!-- <img src="..." class="card-img-top" alt="..."> -->
+                        <div class="card-body">
+                          <h5 class="card-title"><%=color.color%></h5>
+                          <p class="card-text"><%=color.descripcion%></p>
+                          <a href="#" class="btn btn-primary">Go</a>
+                        </div>
                     </div>
+                <% } %>
                 </div>
-            <% } %>
-            </div>
-    </div>
-<% } else { %>
-    <h1>No hay más colores registrados</h1>
-<% } %>   
+        </div>
+    <% } else { %>
+        <h1>No hay más colores registrados</h1>
+    <% } %>   
+</body>
