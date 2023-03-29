@@ -1,3 +1,5 @@
+const db = require('../util/database');
+
 const colores = [
     { 
         color: 'Azul', 
@@ -29,6 +31,13 @@ module.exports = class Color {
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
     static fetchAll() {
+        db.execute('SELECT * FROM colors')
+        .then(([rows, fieldData]) => {
+            console.log(rows);
+        })
+        .catch(err => {
+            console.log(err);
+        });
         return colores;
+        }
     }
-}
