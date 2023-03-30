@@ -26,9 +26,24 @@ exports.postLogin = (request, response, next) => {
                 if(doMatch) {
                     request.session.isLoggedIn = true;
                     request.session.nombre = rows[0].nombre;
-                    return request.session.save(err => {
-                        response.redirect('/');
-                    });
+                    User.fetchPrivilegios(rows[0].username)
+                    .then(([consultaPrivilegios, fieldData]) => {
+                        console.log(consultaPrivilegios);
+
+                        const privilegios = [];
+                        for(let privilegio of consultaPrivilegios) {
+                            privilegios.push(privilegio.nombre);
+                        }
+
+                        request.session.privilegios = privilegios
+                        console.log(request.session.privilegios);
+
+                        return request.session.save(err => {
+                            response.redirect('/');
+                        });
+                    })
+                    .catch((error) => {console.log(error)})
+                    
                 } else {
                     request.session.mensaje = "Usuario y/o contraseña incorrectos";
                     response.redirect('/login');
