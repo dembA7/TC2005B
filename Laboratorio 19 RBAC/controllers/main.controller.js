@@ -25,6 +25,7 @@ exports.getRegister = (request, response, next) => {
         isLoggedIn: request.session.isLoggedIn || false,
         nombre: request.session.nombre || '',
         titulo: 'Registrar',
+        privilegios: request.session.privilegios || [],
     });
 };
 
@@ -96,6 +97,7 @@ exports.getList = (request, response, next) => {
             colores: rows,
             isLoggedIn: request.session.isLoggedIn || false,
             nombre: request.session.nombre || '',
+            privilegios: request.session.privilegios || [],
         });
     })
     .catch(err => {console.log(err);});
