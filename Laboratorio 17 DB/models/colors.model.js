@@ -20,7 +20,7 @@ module.exports = class Color {
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
     constructor(nuevo_Color) {
         this.color = nuevo_Color.color || 'Nombre';
-        this.imagen = nuevo_Color.imagen || 'https://bulma.io/images/placeholders/1280x960.pnghttps://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png';
+        this.imagen = nuevo_Color.imagen || null;
         this.descripcion = nuevo_Color.descripcion || 'Descripcion';
     }
 

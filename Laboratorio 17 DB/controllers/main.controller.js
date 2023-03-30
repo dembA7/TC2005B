@@ -72,7 +72,7 @@ exports.postColor = (request, response, next) => {
     response.redirect('/list');
 };
 
-exports.getLista = (request, response, next) => {
+exports.getList = (request, response, next) => {
 
     Color.fetchAll()
     .then(([rows, fieldData]) => {
