@@ -9,6 +9,8 @@ exports.getMain = (request, response, next) => {
 
     response.render('main', {
         titulo: 'Colores',
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
     });
 };
 
