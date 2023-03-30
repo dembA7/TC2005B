@@ -1,13 +1,44 @@
 const User = require('../models/users.model');
+const bcrypt = require('bcryptjs');
 
 exports.getLogin = (request, response, next) => {
+
+    const mensaje = request.session.mensaje || '';
+    if (request.session.mensaje) {
+        request.session.mensaje  = '';
+    }
+
     response.render('login', {
         titulo: 'Login',
+        mensaje: mensaje,
     });
 };
 
 exports.postLogin = (request, response, next) => {
-    response.redirect('/');
+    User.fetchOne(request.body.username)
+    .then(([rows, fieldData]) => {
+        if (rows.length == 1) {
+            console.log(rows);
+            bcrypt.compare(request.body.password, rows[0].password)
+            .then((doMatch) => {
+                if(doMatch) {
+                    response.redirect('/');
+                } else {
+                    request.session.mensaje = "Usuario y/o contraseña incorrectos";
+                    response.redirect('/login');
+                }
+            })
+            .catch((error) => console.log(error));
+            
+        } else {
+            request.session.mensaje = "Usuario y/o contraseña incorrectos";
+            response.redirect('/login');
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
 };
 
 exports.getSignUp = (request, response, next) => {
@@ -26,14 +57,14 @@ exports.postSignUp = (request, response, next) => {
 
     user.save()
     .then(([rows, fieldData]) => {
-        response.redirect('/usuarios/login');
+        response.redirect('/login');
     })
     .catch((error) => {console.log(error)});
 
     console.log("El usuario se ha guardado con éxito.")
 };
 
-exports.LogOut = (request, response, next) => {
+exports.logOut = (request, response, next) => {
     request.session.destroy(() => {
         response.redirect('/login'); //Este código se ejecuta cuando la sesión se elimina.
     });

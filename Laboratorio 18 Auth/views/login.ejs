@@ -29,4 +29,10 @@
     </div>
 </form>
 
+<% if (mensaje != '') { %>
+    <div class="alert alert-dark" role="alert">
+        <%= mensaje %>
+    </div>
+<% } %>
+
 <%- include('includes/foot.ejs') %>
