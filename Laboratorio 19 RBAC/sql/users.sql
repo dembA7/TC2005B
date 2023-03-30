@@ -11,7 +11,7 @@
 USE colors;
 
 CREATE TABLE users (
-    id INT(11) NOT NULL,
+    id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(400),
     username VARCHAR(70) NOT NULL,
     password varchar(400) NOT NULL,
@@ -30,9 +30,9 @@ CREATE TABLE `roles` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 )
 
-INSERT INTO `roles` (`id`, `nombre`) VALUES
-(1, 'admin', NULL),
-(2, 'user', NULL);
+INSERT INTO `roles`(`id`, `nombre`) VALUES 
+(1,'admin'), 
+(2, 'user');
 
 CREATE TABLE `privilegios` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -40,8 +40,8 @@ CREATE TABLE `privilegios` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 )
 
-INSERT INTO `privilegios` (`id`, `nombre`) VALUES
-(1, 'verAdmin');
+INSERT INTO `privilegios`(`id`, `nombre`) VALUES 
+(1,'verAdmin')
 
 CREATE TABLE `rolPrivilegio` (
   `idRol` int(11) NOT NULL,
@@ -49,8 +49,8 @@ CREATE TABLE `rolPrivilegio` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 )
 
-INSERT INTO `rolPrivilegio` (`idRol`, `idPrivilegio`) VALUES
-(1, 1),
+INSERT INTO `rolprivilegio`(`idRol`, `idPrivilegio`) VALUES 
+(1, 1)
 
 CREATE TABLE `usuarioRol` (
   `idUsuario` int(11) NOT NULL,
@@ -58,15 +58,14 @@ CREATE TABLE `usuarioRol` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 )
 
-INSERT INTO `usuarioRol` (`idUsuario`, `idRol`) VALUES
+INSERT INTO `usuariorol`(`idUsuario`, `idRol`) VALUES 
 (1, 1),
 (2, 2);
 
 
 -- Indexes
 
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
+ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`);
 
 ALTER TABLE `usuarioRol`
@@ -86,5 +85,3 @@ ALTER TABLE `rolPrivilegio`
 ALTER TABLE `usuarioRol`
   ADD CONSTRAINT `usuario_rol_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `usuario_rol_ibfk_2` FOREIGN KEY (`idRol`) REFERENCES `roles` (`id`);
-COMMIT;
-
