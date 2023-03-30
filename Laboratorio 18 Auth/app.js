@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const isAuth = require('./util/is-auth');
+const csrf = require('csurf');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
@@ -16,6 +17,14 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+//CSRF Protection
+const csrfProtection = csrf();
+app.use(csrfProtection); 
+app.use((request, response, next) => {
+    response.locals.csrfToken = request.csrfToken();
+    next();
+});
 
 // Rutas
 const mainRuta = require('./routes/main.routes');

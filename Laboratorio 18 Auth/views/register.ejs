@@ -17,7 +17,8 @@
     </style>
     <body>
         <h3>Registrar nuevo color</h3>
-        <form action="/register" method="POST"> 
+        <form action="/register" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="mb-3">
                 <label for="color" class="form-label"><strong>Color</strong></label>
                 <input required type="text" name="color" class="form-control" id="color" placeholder="Ingresa el color a registrar">
