@@ -19,9 +19,9 @@ module.exports = class Color {
 
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
     constructor(nuevo_Color) {
-        this.color = nuevo_Color.color || 'Nombre';
+        this.color = nuevo_Color.color;
         this.imagen = nuevo_Color.imagen || null;
-        this.descripcion = nuevo_Color.descripcion || 'Descripcion';
+        this.descripcion = nuevo_Color.descripcion;
     }
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
