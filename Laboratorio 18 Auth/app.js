@@ -27,6 +27,7 @@ const usersRuta = require('./routes/users.routes')
 
 // Middlewares
 app.use('/', mainRuta);
+app.use('list', isAuth, mainRuta)
 app.use(azulRuta);
 app.use(verdeRuta);
 app.use(amarilloRuta);

@@ -22,6 +22,8 @@ exports.getRegister = (request, response, next) => {
     response.setHeader('Set-Cookie', 'registerConsultas=' + registerConsultas + '; HttpOnly');
 
     response.render('register', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
         titulo: 'Registrar',
     });
 };
@@ -34,6 +36,8 @@ exports.getBlue = (request, response, next) => {
     response.setHeader('Set-Cookie', 'blueConsultas=' + blueConsultas + '; HttpOnly');
 
     response.render('blue', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
         titulo: 'Azul',
     });
 };
@@ -46,6 +50,8 @@ exports.getYellow = (request, response, next) => {
     response.setHeader('Set-Cookie', 'yellowConsultas=' + yellowConsultas + '; HttpOnly');
 
     response.render('yellow', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
         titulo: 'Amarillo',
     });
 };
@@ -58,6 +64,8 @@ exports.getGreen = (request, response, next) => {
     response.setHeader('Set-Cookie', 'greenConsultas=' + greenConsultas + '; HttpOnly');
 
     response.render('green', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
         titulo: 'Verde',
     });
 };
