@@ -76,6 +76,7 @@ exports.postColor = (request, response, next) => {
     const color = new Color({
         color: request.body.color,
         descripcion: request.body.descripcion,
+        imagen: request.body.imagen,
     });
 
     color.save()

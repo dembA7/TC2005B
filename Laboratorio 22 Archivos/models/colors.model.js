@@ -20,16 +20,16 @@ module.exports = class Color {
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
     constructor(nuevoColor) {
         this.color = nuevoColor.color;
-        this.imagen = nuevoColor.imagen || null;
         this.descripcion = nuevoColor.descripcion;
+        this.imagen = nuevoColor.imagen;
     }
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
         return db.execute(`
-            INSERT INTO colors (nombre, descripcion) 
-            values (?, ?)
-        `, [this.color, this.descripcion]);
+            INSERT INTO colors (nombre, descripcion, imagen) 
+            values (?, ?, ?)
+        `, [this.color, this.descripcion, this.imagen]);
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
