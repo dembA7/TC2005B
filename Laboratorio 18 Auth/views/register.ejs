@@ -11,17 +11,20 @@
             padding-left: 20px;
             padding-top: 20px;
         }
+        #color, #descripcion{
+            max-width: 900px;
+        }
     </style>
     <body>
         <h3>Registrar nuevo color</h3>
         <form action="/register" method="POST"> 
             <div class="mb-3">
-                <label for="color" class="form-label">Color</label>
+                <label for="color" class="form-label"><strong>Color</strong></label>
                 <input required type="text" name="color" class="form-control" id="color" placeholder="Ingresa el color a registrar">
             </div>
             <div class="mb-3">
-                <label for="descripcion" class="form-label">Descripción</label>
-                <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="Ingresa la descripción de este color">
+                <label for="descripcion" class="form-label"><strong>Descripcion</strong></label>
+                <textarea type="text" name="descripcion" class="form-control" id="descripcion" placeholder="Ingresa la descripción de este color" rows="5"></textarea>
             </div><br>
             <input class="btn btn-success" type="submit" value="Confirmar" $input-padding-x: 55px>
         </form>

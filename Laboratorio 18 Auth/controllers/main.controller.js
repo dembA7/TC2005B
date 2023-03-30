@@ -94,3 +94,9 @@ exports.getLogin = (request, response, next) => {
         titulo: 'Login',
     });
 };
+
+exports.getSignUp = (request, response, next) => {
+    response.render('signup', {
+        titulo: 'Sign Up',
+    });
+};
