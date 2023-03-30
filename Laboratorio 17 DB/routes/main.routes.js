@@ -6,6 +6,6 @@ const mainController = require('../controllers/main.controller')
 router.get('/', mainController.getMain);
 router.get('/register', mainController.getRegister);
 router.post('/register', mainController.postColor);
-router.get('/list', mainController.listar)
+router.get('/list', mainController.getLista)
 
 module.exports = router;

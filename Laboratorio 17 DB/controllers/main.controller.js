@@ -72,6 +72,15 @@ exports.postColor = (request, response, next) => {
     response.redirect('/list');
 };
 
-exports.listar = (request, response, next) => {
-    response.render('list', { colores: Color.fetchAll() });
+exports.getLista = (request, response, next) => {
+
+    Color.fetchAll()
+    .then(([rows, fieldData]) => {
+        console.log(rows);
+        
+        response.render('list', { 
+            colores: rows,
+        });
+    })
+    .catch(err => {console.log(err);});
 };
