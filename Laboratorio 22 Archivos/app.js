@@ -3,8 +3,9 @@ const app = express();
 const session = require('express-session');
 const isAuth = require('./util/is-auth');
 const csrf = require('csurf');
-
+const multer = require('multer');
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json());
 
