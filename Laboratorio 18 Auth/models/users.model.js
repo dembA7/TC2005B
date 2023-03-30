@@ -13,8 +13,8 @@ module.exports = class User {
         return bcrypt.hash(this.password, 12)
         .then((encryptedPassword) => {
             return db.execute(`
-                INSERT INTO usuarios (nombre, username, password)
-            values (?, ?, ?)
+                INSERT INTO users (nombre, username, password)
+                values (?, ?, ?)
             `, [this.nombre, this.username, encryptedPassword]);
         })
         .catch((error) => {console.log(error)});
@@ -23,7 +23,7 @@ module.exports = class User {
     static fetchOne(username){
         return db.execute(`
             SELECT * 
-            FROM usuarios
+            FROM users
             WHERE username = ?
         `, [username]);
     }
