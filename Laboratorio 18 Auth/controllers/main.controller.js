@@ -88,15 +88,3 @@ exports.getList = (request, response, next) => {
     })
     .catch(err => {console.log(err);});
 };
-
-exports.getLogin = (request, response, next) => {
-    response.render('login', {
-        titulo: 'Login',
-    });
-};
-
-exports.getSignUp = (request, response, next) => {
-    response.render('signup', {
-        titulo: 'Sign Up',
-    });
-};

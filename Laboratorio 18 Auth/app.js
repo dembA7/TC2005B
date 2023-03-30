@@ -22,7 +22,7 @@ const azulRuta = require('./routes/blue.routes');
 const verdeRuta = require('./routes/green.routes');
 const amarilloRuta = require('./routes/yellow.routes');
 const registrarRuta = require('./routes/main.routes');
-const mainController = require('./controllers/main.controller');
+const usersRuta = require('./routes/users.routes')
 
 // Middlewares
 app.use('/', mainRuta);
@@ -30,7 +30,7 @@ app.use(azulRuta);
 app.use(verdeRuta);
 app.use(amarilloRuta);
 app.use(registrarRuta);
-// app.post(mainController.contador);
+app.use(usersRuta);
 
 // 404
 app.use((request, response) => {
