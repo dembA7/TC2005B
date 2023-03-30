@@ -67,9 +67,13 @@ exports.postColor = (request, response, next) => {
         descripcion: request.body.descripcion,
     });
 
-    color.save();
+    color.save()
+    .then(([rows, fieldData]) => {
+        response.redirect('/list');
+    })
+    .catch((error) => {console.log(error)});
+
     console.log("El color se ha guardado con éxito.")
-    response.redirect('/list');
 };
 
 exports.getList = (request, response, next) => {
