@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
+const isAuth = require('./util/is-auth');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));

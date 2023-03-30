@@ -84,6 +84,8 @@ exports.getList = (request, response, next) => {
         
         response.render('list', { 
             colores: rows,
+            isLoggedIn: request.session.isLoggedIn || false,
+            nombre: request.session.nombre || '',
         });
     })
     .catch(err => {console.log(err);});

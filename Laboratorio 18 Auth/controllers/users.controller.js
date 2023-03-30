@@ -11,6 +11,8 @@ exports.getLogin = (request, response, next) => {
     response.render('login', {
         titulo: 'Login',
         mensaje: mensaje,
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
     });
 };
 
@@ -22,7 +24,11 @@ exports.postLogin = (request, response, next) => {
             bcrypt.compare(request.body.password, rows[0].password)
             .then((doMatch) => {
                 if(doMatch) {
-                    response.redirect('/');
+                    request.session.isLoggedIn = true;
+                    request.session.nombre = rows[0].nombre;
+                    return request.session.save(err => {
+                        response.redirect('/');
+                    });
                 } else {
                     request.session.mensaje = "Usuario y/o contraseña incorrectos";
                     response.redirect('/login');
@@ -35,15 +41,14 @@ exports.postLogin = (request, response, next) => {
             response.redirect('/login');
         }
     })
-    .catch((error) => {
-        console.log(error);
-    });
-
+    .catch((error) => {console.log(error);});
 };
 
 exports.getSignUp = (request, response, next) => {
     response.render('signup', {
         titulo: 'Sign Up',
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
     });
 };
 
