@@ -1,0 +1,30 @@
+<%- include('includes/head.ejs') %>
+
+<style>
+    form{
+        text-align: center; 
+    }
+    h1{
+        text-align: center;
+        padding-top: 30px;
+    }
+    .form-control{
+        text-align: center;
+    }
+</style>
+<h1 class="title">Login</h1>
+<br><br>
+
+<form action="/usuarios/login" method="POST">
+
+    <label for="username">Username:</label>
+    <input name="username" id="username" class="form-control" type="text">
+    <br><br>
+    <label for="password">Contraseña:</label>
+    <input name="password" id="password" class="input is-rounded" type="password">
+    <br><br>
+    <input class="btn btn-success" type="submit" value="Entrar">
+
+</form>
+
+<%- include('includes/foot.ejs') %>
