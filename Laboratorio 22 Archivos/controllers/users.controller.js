@@ -20,7 +20,7 @@ exports.postLogin = (request, response, next) => {
     User.fetchOne(request.body.username)
     .then(([rows, fieldData]) => {
         if (rows.length == 1) {
-            console.log(rows);
+            // console.log(rows);
             bcrypt.compare(request.body.password, rows[0].password)
             .then((doMatch) => {
                 if(doMatch) {
@@ -28,7 +28,7 @@ exports.postLogin = (request, response, next) => {
                     request.session.nombre = rows[0].nombre;
                     User.fetchPrivilegios(rows[0].username)
                     .then(([consultaPrivilegios, fieldData]) => {
-                        console.log(consultaPrivilegios);
+                        // console.log(consultaPrivilegios);
 
                         const privilegios = [];
                         for(let privilegio of consultaPrivilegios) {
@@ -36,7 +36,7 @@ exports.postLogin = (request, response, next) => {
                         }
 
                         request.session.privilegios = privilegios
-                        console.log(request.session.privilegios);
+                        // console.log(request.session.privilegios);
 
                         return request.session.save(err => {
                             response.redirect('/');

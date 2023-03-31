@@ -76,7 +76,7 @@ exports.postColor = (request, response, next) => {
     const color = new Color({
         color: request.body.color,
         descripcion: request.body.descripcion,
-        imagen: request.body.imagen,
+        imagen: request.file.filename,
     });
 
     color.save()
@@ -92,7 +92,7 @@ exports.getList = (request, response, next) => {
 
     Color.fetchAll()
     .then(([rows, fieldData]) => {
-        console.log(rows);
+        // console.log(rows);
         
         response.render('list', { 
             colores: rows,

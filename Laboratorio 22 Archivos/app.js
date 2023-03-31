@@ -5,13 +5,14 @@ const isAuth = require('./util/is-auth');
 const csrf = require('csurf');
 const multer = require('multer');
 const bodyParser = require('body-parser');
+const path = require('path');
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json());
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     secret: 'xKrsDBW3!!L5tb5w5E$2gANH5W@0d6fV*MQR@e2l47%ADrB@Vd', 
@@ -19,7 +20,19 @@ app.use(session({
     saveUninitialized: false
 }));
 
-//CSRF Protection
+// fileStorage
+const fileStorage = multer.diskStorage({
+    destination: (request, file, callback) => {
+        callback(null, 'public/uploads');
+    },
+    filename: (request, file, callback) => {
+        callback(null, new Date().getMilliseconds() + '-' + file.originalname);
+    },
+});
+
+app.use(multer({ storage: fileStorage }).single('imagen')); 
+
+// CSRF Protection
 const csrfProtection = csrf();
 app.use(csrfProtection); 
 app.use((request, response, next) => {
