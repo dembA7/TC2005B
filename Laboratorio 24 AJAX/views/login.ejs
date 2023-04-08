@@ -1,0 +1,43 @@
+<%- include('includes/head.ejs') %>
+
+<style>
+    form{
+        text-align: center; 
+    }
+    h1{
+        text-align: center;
+        padding-top: 30px;
+    }
+    .form-control{
+        width: 400px;
+        margin: 0 auto;
+    }
+    .alert{
+        margin-left: 760px;
+        width: 400px;
+    }
+</style>
+<h1 class="title">Login</h1>
+<br>
+
+<form action="/login" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+    <div class="mb-3">
+        <label for="username" class="form-label"><strong>Username</strong></label>
+        <input name="username" id="username" class="form-control" type="text">
+      </div>
+    <div class="mb-3">  
+        <label for="password" class="form-label"><strong>Password</strong></label>
+        <input name="password" id="password" class="form-control" type="password">
+        <br><br>
+        <input class="btn btn-primary" type="submit" value="Entrar">
+    </div>
+</form>
+
+<!-- <% if (mensaje != '') { %>
+    <div class="alert alert-dark" role="alert">
+        <%= mensaje %>
+    </div>
+<% } %> -->
+
+<%- include('includes/foot.ejs') %>
