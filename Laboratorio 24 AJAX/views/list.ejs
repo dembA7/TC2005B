@@ -25,7 +25,7 @@
 
     <div id="search">
         <form class="d-flex" role="search" id="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="buscar">
+            <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" id="buscar">
         </form>
     </div>
 
@@ -61,75 +61,56 @@
     </div>
     
     <script>
+
         document.getElementById("buscar").onkeyup = () => {
         //función que manda la petición asíncrona
         const valorBusqueda = document.getElementById("buscar").value;
-        console.log(valorBusqueda);
 
-fetch('/buscar/' + valorBusqueda, {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-    }
-}).then(result => {
-    return result.json(); //Regresa otra promesa
-}).then(data => {
-    //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
-    console.log(data.colores);
-    let respuesta = "";
-
-    if (data.colores.length > 0) { 
-        respuesta += '<div class="row row-cols-1 row-cols-md-3 g-4">';
-        let columns = 0;
-
-        for (let color of data.colores) { 
-            if (columns % 100 == 0) {
-                respuesta += '</div>';
-                respuesta += '<div class="row row-cols-1 row-cols-md-3 g-4">';
+        fetch('/list/' + valorBusqueda, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
             }
-            columns++;
+        }).then(result => {
+            return result.json(); //Regresa otra promesa
+        }).then(data => {
+            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+            console.log(data.colores);
+            let respuesta = "";
 
-            respuesta += '<div class="col">';
-                respuesta += '<div class="card">';
-                    respuesta += '<img src="/uploads/'  + color.imagen + 'class="card-img-top" alt="...">';
-                        respuesta += '<div class="card-body">';
-                            respuesta += '<h5 class="card-title">' + color.nombre + '</h5>';
-                            respuesta += '<p class="card-text">' + color.descripcion + '</p>';
-                        respuesta += '<div>'
-                respuesta += '</div>';
-            respuesta += '</div>';
+            if(data.colores.length > 0){
+                respuesta += '<div class="row row-cols-1 row-cols-md-3 g-4">';
+                let columns = 0;
+                for (let color of data.colores){
+                    if (columns % 100 == 0){
+                        respuesta += '</div>';
+                        respuesta += '<div class="row row-cols-1 row-cols-md-3 g-4">';
+                    }
+                    columns++;
+                    respuesta += '<div class="col">';
+                        respuesta += '<div class="card">';
+                            respuesta += '<img src="/uploads/' + color.imagen + '" class="card-img-top" alt="...">';
+                            respuesta += '<div class="card-body">';
+                                respuesta += '<h5 class="card-title">' + color.nombre + '</h5>';
+                                respuesta += '<p class="card-text">' + color.descripcion + '</p>';
+                            respuesta += '</div>';
+                        respuesta += '</div>';
+                }
+                    respuesta += '</div>';
+                    respuesta += '</div>';
+                    respuesta += '<br><br>';
 
-            respuesta += '<div class="col">';
-                respuesta += '<div class="card">';
-                    respuesta += '<img src="/uploads/'  + color.imagen + 'class="card-img-top" alt="...">';
-                        respuesta += '<div class="card-body">';
-                            respuesta += '<h5 class="card-title">' + color.nombre + '</h5>';
-                            respuesta += '<p class="card-text">' + color.descripcion + '</p>';
-                        respuesta += '<div>'
-                respuesta += '</div>';
-            respuesta += '</div>';
+            } else{
+                respuesta += '<br>';
+                respuesta += '<h4>&nbsp&nbsp&nbspLo sentimos, no tenemos información sobre ese color.</h4>';
+            }
 
-                respuesta += '<div class="col">';
-                respuesta += '<div class="card">';
-                    respuesta += '<img src="/uploads/'  + color.imagen + 'class="card-img-top" alt="...">';
-                        respuesta += '<div class="card-body">';
-                            respuesta += '<h5 class="card-title">' + color.nombre + '</h5>';
-                            respuesta += '<p class="card-text">' + color.descripcion + '</p>';
-                        respuesta += '<div>'
-                respuesta += '</div>';
-            respuesta += '</div>';
-        } 
-    respuesta += '</div>';
-    } else { 
-        respuesta += '<h4>No hay más colores registrados</h4>';
-    }   
+        document.getElementById("resultados").innerHTML = respuesta;
 
-    document.getElementById("resultados").innerHTML = respuesta;
-
-}).catch(err => {
-    console.log(err);
-});
-}
+        }).catch(err => {
+            console.log(err);
+        });
+        }
     </script>
 
 </body>

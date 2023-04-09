@@ -37,13 +37,16 @@ module.exports = class Color {
         return db.execute('SELECT * FROM colors')
     }
 
+    static fetch() {
+        return Color.fetchAll();
+    }
+
     static find(valorBusqueda) {
-        return db.execute(
-            `SELECT id, nombre, imagen  
+        return db.execute(`
+            SELECT nombre, descripcion, imagen  
             FROM colors
             WHERE (nombre LIKE ? OR descripcion LIKE ? OR imagen LIKE ?)
-            `, 
-            [ '%' + valorBusqueda + '%', '%' + valorBusqueda + '%', '%' + valorBusqueda + '%']
+        `, [ '%' + valorBusqueda + '%', '%' + valorBusqueda + '%', '%' + valorBusqueda + '%', ]
         );
     }
 

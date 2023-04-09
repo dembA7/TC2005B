@@ -90,7 +90,7 @@ exports.postColor = (request, response, next) => {
 
 exports.getList = (request, response, next) => {
 
-    Color.fetchAll()
+    Color.fetch()
     .then(([rows, fieldData]) => {
         // console.log(rows);
         
@@ -108,7 +108,7 @@ exports.getBuscar = (request, response, next) => {
     
     Color.find(request.params.valorBusqueda)
     .then(([rows, fieldData]) => {
-        response.status(200).json({colors: rows});
+        response.status(200).json({colores: rows});
     })
     .catch(error => {
         console.log(error);

@@ -36,5 +36,4 @@ module.exports = class User {
                 AND rp.idPrivilegio = p.id AND u.username = ?
         `, [username]);
     }
-
 }
