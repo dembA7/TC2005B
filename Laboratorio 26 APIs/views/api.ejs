@@ -1,2 +1,59 @@
 <%- include('includes/head.ejs') %>
 
+<!DOCTYPE html>
+<html>
+    <head><meta charset="utf-8"></head>
+    <style>
+        h3, #quote{
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+        #author{
+            padding-left: 20px;
+        }
+        .btn-primary{
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+    </style>
+
+    <body>
+        <h3>Breaking Bad Quotes</h3>
+        <p id="quote"></p>
+        <p id="author"></p>
+        <button onclick="getQuote()" type="button" class="btn btn-primary">New Quote!</button>
+    </body>
+</html>
+
+<script>
+
+    fetch('https://api.breakingbadquotes.xyz/v1/quotes', {
+        method: 'GET',
+        headers: {
+        'Content-Type': 'application/json',
+    }
+    }).then(result => {
+        return result.json();
+    }).then(data => {
+        const quote = data[0].quote;
+        const author = data[0].author;
+        document.getElementById('quote').innerHTML = quote;
+        document.getElementById('author').innerHTML = author;
+    })
+
+    function getQuote(){
+        fetch('https://api.breakingbadquotes.xyz/v1/quotes', {
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json',
+        }
+        }).then(result => {
+            return result.json();
+        }).then(data => {
+            const quote = data[0].quote;
+            const author = data[0].author;
+            document.getElementById('quote').innerHTML = quote;
+            document.getElementById('author').innerHTML = author;
+    })
+    }
+</script>

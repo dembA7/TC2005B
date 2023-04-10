@@ -116,3 +116,11 @@ exports.getBuscar = (request, response, next) => {
     });
 
 };
+
+exports.getAPI = (request, response, next) => {
+    response.render('api', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
+        titulo: 'API',
+    });
+}
